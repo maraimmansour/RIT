@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RIT Login</title>
     <link rel="icon" type="image/png" href="icon.png">
+
     <style>
         * {
             box-sizing: border-box;
@@ -14,12 +15,11 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #D1D5DB; 
+            background-color: #D1D5DB;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            overflow: hidden;
         }
 
         #content-area {
@@ -45,13 +45,28 @@
             margin-bottom: 35px;
         }
 
-        .logo-container img { height: 40px; width: auto; }
+        .logo-container img {
+            height: 40px;
+            width: auto;
+        }
 
-        h1 { font-size: 26px; font-weight: 700; margin: 0 0 5px 0; color: #333; }
+        h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin: 0 0 5px 0;
+            color: #333;
+        }
 
-        .subtitle { font-size: 14px; color: #555; margin-bottom: 25px; }
+        .subtitle {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 25px;
+        }
 
-        .input-group { position: relative; margin-bottom: 12px; }
+        .input-group {
+            position: relative;
+            margin-bottom: 12px;
+        }
 
         .input-group input {
             width: 100%;
@@ -59,7 +74,6 @@
             border: 1px solid #ccc;
             border-radius: 2px;
             font-size: 16px;
-            color: #333;
             outline: none;
         }
 
@@ -76,8 +90,13 @@
             opacity: 0.4;
         }
 
-        .user-icon::before { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>'); }
-        .lock-icon::before { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>'); }
+        .user-icon::before {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>');
+        }
+
+        .lock-icon::before {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>');
+        }
 
         .login-btn {
             width: 100%;
@@ -92,14 +111,29 @@
             margin-top: 10px;
         }
 
-        .options { margin-top: 18px; text-align: left; display: flex; align-items: center; font-size: 15px; color: #444; }
-        .options input { margin-right: 10px; }
-        .help-link { display: inline-block; margin-top: 35px; color: #F76902; text-decoration: none; font-size: 16px; }
+        .options {
+            margin-top: 18px;
+            display: flex;
+            align-items: center;
+            font-size: 15px;
+            color: #444;
+        }
 
-        /* --- Prank Styling --- */
+        .options input {
+            margin-right: 10px;
+        }
+
+        .help-link {
+            display: inline-block;
+            margin-top: 35px;
+            color: #F76902;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        /* ---------- Prank ---------- */
         .prank-container {
             text-align: center;
-            /* Instant pop-in animation */
             animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
@@ -109,18 +143,51 @@
             font-weight: 900;
             margin-top: 20px;
             text-transform: uppercase;
+            white-space: normal;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
-        .prank-img { max-width: 400px; height: auto; }
+        .prank-img {
+            max-width: 400px;
+            height: auto;
+        }
 
         @keyframes popIn {
             0% { transform: scale(0); }
             100% { transform: scale(1); }
         }
+
+        /* ---------- Mobile fixes ---------- */
+       @media (max-width: 480px) {
+    body {
+        padding: 0;
+    }
+
+    .login-card {
+        padding: 32px 20px;
+        margin: 0 16px; /* left + right margin */
+        width: calc(100% - 32px);
+    }
+
+    .prank-container {
+        padding: 0 16px;
+    }
+
+    .prank-text {
+        font-size: 36px;
+        line-height: 1.2;
+    }
+
+    .prank-img {
+        max-width: 100%;
+    }
+}
+
     </style>
 </head>
-<body>
 
+<body>
     <div id="content-area">
         <div class="login-card">
             <div class="logo-container">
@@ -134,6 +201,7 @@
                 <div class="input-group user-icon">
                     <input type="text" placeholder="RIT Username, ex: xyz1234" required>
                 </div>
+
                 <div class="input-group lock-icon">
                     <input type="password" placeholder="Password" required>
                 </div>
@@ -141,8 +209,8 @@
                 <button type="submit" class="login-btn">Log In</button>
 
                 <div class="options">
-                    <input type="checkbox" id="stay-logged" checked>
-                    <label for="stay-logged">Stay logged in</label>
+                    <input type="checkbox" checked>
+                    <label>Stay logged in</label>
                 </div>
             </form>
 
@@ -151,21 +219,16 @@
     </div>
 
     <script>
-        document.getElementById('login-form').addEventListener('submit', function(e) {
-            e.preventDefault(); 
-            
-            const container = document.getElementById('content-area');
-            
-            // Instant swap - the login card "blinks" out and is replaced immediately
-            container.innerHTML = `
+        document.getElementById('login-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            document.getElementById('content-area').innerHTML = `
                 <div class="prank-container">
-                    <img src="gd.png" alt="GD Image" class="prank-img">
+                    <img src="gd.png" class="prank-img" alt="GD Image">
                     <div class="prank-text">YOU'VE BEEN PHISHED</div>
                 </div>
             `;
         });
     </script>
-
 </body>
 </html>
-
