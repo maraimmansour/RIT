@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIT Login</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #D1D5DB; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #content-area {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-card {
+            background-color: white;
+            width: 100%;
+            max-width: 440px;
+            padding: 45px 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-top: 6px solid #F76902;
+            text-align: center;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 35px;
+        }
+
+        .logo-container img { height: 40px; width: auto; }
+
+        h1 { font-size: 26px; font-weight: 700; margin: 0 0 5px 0; color: #333; }
+
+        .subtitle { font-size: 14px; color: #555; margin-bottom: 25px; }
+
+        .input-group { position: relative; margin-bottom: 12px; }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 12px 12px 42px;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            font-size: 16px;
+            color: #333;
+            outline: none;
+        }
+
+        .input-group::before {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.4;
+        }
+
+        .user-icon::before { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>'); }
+        .lock-icon::before { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>'); }
+
+        .login-btn {
+            width: 100%;
+            background-color: #F76902;
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 19px;
+            font-weight: bold;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .options { margin-top: 18px; text-align: left; display: flex; align-items: center; font-size: 15px; color: #444; }
+        .options input { margin-right: 10px; }
+        .help-link { display: inline-block; margin-top: 35px; color: #F76902; text-decoration: none; font-size: 16px; }
+
+        /* --- Prank Styling --- */
+        .prank-container {
+            text-align: center;
+            /* Instant pop-in animation */
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .prank-text {
+            color: #F76902;
+            font-size: 64px;
+            font-weight: 900;
+            margin-top: 20px;
+            text-transform: uppercase;
+        }
+
+        .prank-img { max-width: 400px; height: auto; }
+
+        @keyframes popIn {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="content-area">
+        <div class="login-card">
+            <div class="logo-container">
+                <img src="logo.png" alt="RIT Logo">
+            </div>
+
+            <h1>RIT Login</h1>
+            <div class="subtitle">google.com/a/g.rit.edu</div>
+
+            <form id="login-form">
+                <div class="input-group user-icon">
+                    <input type="text" placeholder="RIT Username, ex: xyz1234" required>
+                </div>
+                <div class="input-group lock-icon">
+                    <input type="password" placeholder="Password" required>
+                </div>
+
+                <button type="submit" class="login-btn">Log In</button>
+
+                <div class="options">
+                    <input type="checkbox" id="stay-logged" checked>
+                    <label for="stay-logged">Stay logged in</label>
+                </div>
+            </form>
+
+            <a href="#" class="help-link">Need help?</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            
+            const container = document.getElementById('content-area');
+            
+            // Instant swap - the login card "blinks" out and is replaced immediately
+            container.innerHTML = `
+                <div class="prank-container">
+                    <img src="gd.png" alt="GD Image" class="prank-img">
+                    <div class="prank-text">YOU'VE BEEN PHISHED</div>
+                </div>
+            `;
+        });
+    </script>
+
+</body>
+</html>
